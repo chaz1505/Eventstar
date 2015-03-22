@@ -14,7 +14,7 @@ class GuestsController < ApplicationController
 
   # GET /guests/new
   def new
-    @guest = Guest.new
+    @guest = @user.events.guests.build
   end
 
   # GET /guests/1/edit
@@ -24,7 +24,7 @@ class GuestsController < ApplicationController
   # POST /guests
   # POST /guests.json
   def create
-    @guest = Guest.new(guest_params)
+    @guest = @user.events.guests.build(guest_params)
 
     respond_to do |format|
       if @guest.save

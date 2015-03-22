@@ -10,5 +10,11 @@
   <%= @event.user_id %>
 </p>
 
+<p>
+  <strong>Event ID:</strong>
+  <%= @event.id %>
+</p>
+
+<%= render  template: "guests/index" %>
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
