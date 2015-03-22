@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :guests
+
+  resources :events
+
   devise_for :users
   get 'pages/home'
 
