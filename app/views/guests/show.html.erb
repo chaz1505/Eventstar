@@ -15,5 +15,5 @@
   <%= @guest.event_id %>
 </p>
 
-<%= link_to 'Edit', edit_guest_path(@guest) %> |
-<%= link_to 'Back', guests_path %>
+<%= link_to 'Edit', edit_event_guest_path(@event, @guest) %> |
+<%= link_to 'Back', event_guests_path(@event) %>

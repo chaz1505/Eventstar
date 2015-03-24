@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Guests</h1>
+<h1>Guest List</h1>
 
 <table>
   <thead>
@@ -13,15 +13,15 @@
   </thead>
 
   <tbody>
-    <% @guests = Guest.where(:guests => {:event_id => @event.id}) %>
-    <% @guests.each do |guest| %> 
+    <% # @guests = Guest.where(:guests => {:event_id => @event.id}) %>
+    <% @event.guests.each do |guest| %> 
       <tr> 
         <td><%= guest.guest_name %></td>
         <td><%= guest.guest_email %></td>
         <td><%= guest.event_id  %></td>
-        <td><%= link_to 'Show', guest %></td>
-        <td><%= link_to 'Edit', edit_guest_path(guest) %></td>
-        <td><%= link_to 'Destroy', guest, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', event_guest_path(@event, guest) %></td>
+        <td><%= link_to 'Edit', edit_event_guest_path(@event,guest) %></td>
+        <td><%= link_to 'Destroy', [@event,guest],  :method => :delete %>
       </tr>
     <% end %>  
   </tbody>
@@ -29,4 +29,4 @@
 
 <br>
 
-<%= link_to 'New Guest', new_guest_path %>
+<%= link_to "New Guest", new_event_guest_path(@event) %>
