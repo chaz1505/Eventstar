@@ -5,6 +5,8 @@ class GuestsController < ApplicationController
 
    def index
     @guests = @event.guests.all
+    @unchecked = Guests.where(checked: false)
+    @checked = Guests.where(checked: true)
   end
 
   def show
@@ -32,9 +34,7 @@ class GuestsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /guests/1
-  # PATCH/PUT /guests/1.json
-  def update
+   def update
 
   @guest = @event.guests.find(params[:id])
 
@@ -47,8 +47,6 @@ class GuestsController < ApplicationController
     end
   end
 
-  # DELETE /guests/1
-  # DELETE /guests/1.json
   def destroy
     @guest = @event.guests.find(params[:id])
     @guest.destroy

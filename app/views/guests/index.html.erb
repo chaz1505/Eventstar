@@ -6,9 +6,7 @@
   <thead>
     <tr>
       <th>Guest name</th>
-      <th>Guest email</th>
-      <th>Event</th>
-      <th colspan="3"></th>
+      <th colspan="1"></th>
     </tr>
   </thead>
 
@@ -17,11 +15,9 @@
     <% @event.guests.each do |guest| %> 
       <tr> 
         <td><%= guest.guest_name %></td>
-        <td><%= guest.guest_email %></td>
-        <td><%= guest.event_id  %></td>
         <td><%= link_to 'Show', event_guest_path(@event, guest) %></td>
         <td><%= link_to 'Edit', edit_event_guest_path(@event,guest) %></td>
-        <td><%= link_to 'Destroy', [@event,guest],  :method => :delete %>
+        <td><%= link_to 'Remove', [@event,guest],  :method => :delete %>
       </tr>
     <% end %>  
   </tbody>
@@ -29,4 +25,6 @@
 
 <br>
 
-<%= link_to "New Guest", new_event_guest_path(@event) %>
+<%= link_to "Add Guest", new_event_guest_path(@event) %>  |
+<%= link_to "Back to Events", events_path %> 
+

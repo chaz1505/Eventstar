@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150322142812) do
+ActiveRecord::Schema.define(version: 20150326213339) do
 
   create_table "events", force: :cascade do |t|
     t.text     "event_name"
@@ -21,11 +21,12 @@ ActiveRecord::Schema.define(version: 20150322142812) do
   end
 
   create_table "guests", force: :cascade do |t|
-    t.text     "guest_name"
-    t.text     "guest_email"
+    t.string   "guest_name"
+    t.string   "guest_email"
     t.integer  "event_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.boolean  "checked"
   end
 
   create_table "users", force: :cascade do |t|
