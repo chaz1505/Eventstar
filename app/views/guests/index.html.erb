@@ -2,11 +2,13 @@
 
 <h1>Guest List</h1>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Guest name</th>
-      <th colspan="1"></th>
+      <th> Registered? </th>
+      <th> Admin </th>
+      <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -15,11 +17,18 @@
     <% @event.guests.each do |guest| %> 
       <tr> 
         <td><%= guest.guest_name %></td>
-        <td><%= link_to 'Show', event_guest_path(@event, guest) %></td>
-        <td><%= link_to 'Edit', edit_event_guest_path(@event,guest) %></td>
-        <td><%= link_to 'Remove', [@event,guest],  :method => :delete %>
+        <td><%= if guest.checked == true
+      link_to '<span class="glyphicon-class glyphicon glyphicon-ok-sign"></span>'.html_safe, checked_event_guest_path(@event, guest)
+                        else
+      link_to '<span class="glyphicon-class glyphicon glyphicon-remove-sign"></span>'.html_safe, checked_event_guest_path(@event, guest)
+                        end   
+        %></td>        
+<td><%= link_to 'Show', event_guest_path(@event, guest) %></td>
+  <!--      <td><%= link_to 'Edit', edit_event_guest_path(@event,guest) %></td>  -->
+        <td><%= link_to 'Remove', [@event,guest],  :method => :delete %></td>
+              
       </tr>
-    <% end %>  
+    <% end %>
   </tbody>
 </table>
 

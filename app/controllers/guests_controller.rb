@@ -5,8 +5,8 @@ class GuestsController < ApplicationController
 
    def index
     @guests = @event.guests.all
-    @unchecked = Guests.where(checked: false)
-    @checked = Guests.where(checked: true)
+    @unchecked = Guest.where(checked: false)
+    @checked = Guest.where(checked: true)
   end
 
   def show
@@ -36,8 +36,8 @@ class GuestsController < ApplicationController
 
    def update
 
-  @guest = @event.guests.find(params[:id])
-
+   @guest = @event.guests.find(params[:id])
+     
     respond_to do |format|
       if @guest.update_attributes(guest_params)
         format.html { redirect_to [@event, @guest], notice: 'Guest was successfully updated.' }
@@ -51,9 +51,21 @@ class GuestsController < ApplicationController
     @guest = @event.guests.find(params[:id])
     @guest.destroy
     respond_to do |format|
-      format.html { redirect_to event_guests_path(@event), notice: 'Guest was successfully destroyed.' }
+      format.html { redirect_to event_guests_path(@event), notice: "Guest was successfully removed." }
     end
   end
+
+  def checked   
+  
+    @guest = @event.guests.find(params[:id])
+      if @guest.checked == false
+    @guest.update_attribute(:checked, true)
+        redirect_to event_guests_path, notice: "#{@guest.guest_name} was successfully checked."
+    else 
+    @guest.update_attribute(:checked, false)
+        redirect_to event_guests_path, notice: "#{@guest.guest_name} was successfully unchecked."
+    end
+  end 
 
   private
     # Use callbacks to share common setup or constraints between actions.

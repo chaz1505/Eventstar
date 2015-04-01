@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
   resources :events do 
-    resources :guests
+    resources :guests do
+      member do 
+        get "checked"
+      end 
+    end 
   end
 
   devise_for :users
